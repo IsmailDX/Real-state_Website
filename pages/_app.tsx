@@ -6,11 +6,13 @@ import HouseContextProvider from "@/components/HouseContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="max-w-[1440px] mx-auto bg-white">
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
-    </div>
+    <HouseContextProvider>
+      <div className="max-w-[1440px] mx-auto bg-white">
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </div>
+    </HouseContextProvider>
   );
 }
 

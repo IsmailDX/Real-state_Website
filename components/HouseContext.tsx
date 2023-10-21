@@ -4,35 +4,54 @@ import React, {
   useState,
   Dispatch,
   SetStateAction,
+  useEffect,
 } from "react";
 import { housesData } from "../constants/data";
 
-// Define the type for your context
+type House = {
+  id: number;
+  type: string;
+  name: string;
+  description: string;
+  country: string;
+  address: string;
+  bedrooms: string;
+  bathrooms: string;
+  surface: string;
+  year: string;
+  price: string;
+};
+
 type HouseContextType = {
   country: string;
   setCountry: Dispatch<SetStateAction<string>>;
   countries: string[];
   setCountries: Dispatch<SetStateAction<string[]>>;
-  property: string;
-  setProperty: Dispatch<SetStateAction<string>>;
-  properties: string[];
-  setProperties: Dispatch<SetStateAction<string[]>>;
-  price: string;
-  setPrice: Dispatch<SetStateAction<string>>;
-  houses: {};
-  loading: boolean;
+  houses: House[];
 };
 
-const HouseContext = createContext<HouseContextType | undefined>(undefined);
+type HouseContextProviderProps = {
+  children: ReactNode;
+};
 
-const HouseContextProvider = ({ children }: { children: ReactNode }) => {
+export const HouseContext = createContext<HouseContextType | undefined>(
+  undefined
+);
+
+const HouseContextProvider = ({ children }: HouseContextProviderProps) => {
   const [houses, setHouses] = useState(housesData);
   const [country, setCountry] = useState("Location (any)");
   const [countries, setCountries] = useState<string[]>([]);
-  const [property, setProperty] = useState("Property type (any)");
-  const [properties, setProperties] = useState<string[]>([]);
-  const [price, setPrice] = useState("Price range (any)");
-  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const allCountries = houses.map((house) => {
+      return house.country;
+    });
+
+    // Remove duplicates and include the default "Location (any)" option
+    const uniqueCountries = ["Location (any)", ...new Set(allCountries)];
+    setCountries(uniqueCountries);
+  }, []);
 
   return (
     <HouseContext.Provider
@@ -41,14 +60,7 @@ const HouseContextProvider = ({ children }: { children: ReactNode }) => {
         setCountry,
         countries,
         setCountries,
-        property,
-        setProperty,
-        properties,
-        setProperties,
-        price,
-        setPrice,
         houses,
-        loading,
       }}
     >
       {children}

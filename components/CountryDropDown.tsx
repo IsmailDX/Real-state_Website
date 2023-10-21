@@ -2,11 +2,17 @@ import React, { useState, useEffect, useContext } from "react";
 
 import { RiMapPinLine, RiArrowUpSLine, RiArrowDownSLine } from "react-icons/ri";
 import { Menu } from "@headlessui/react";
-import { HouseContext } from "./";
+import { HouseContext } from "./HouseContext";
 import { House } from ".";
 
 const CountryDropDown = () => {
+  const houseContext = useContext(HouseContext);
   const [isOpen, setIsOpen] = useState(false);
+
+  if (!houseContext) {
+    return <div>Loading...</div>;
+  }
+  const { country, setCountry, countries } = houseContext;
   return (
     <Menu as="div" className="dropdown relative">
       <Menu.Button
@@ -15,7 +21,7 @@ const CountryDropDown = () => {
       >
         <RiMapPinLine className="dropdown-icon-primary" />
         <div>
-          <div className="text-[15px] font-medium leading-tight">country</div>
+          <div className="text-[15px] font-medium leading-tight">{country}</div>
           <div className="text-[13px]">Select your place</div>
         </div>
         {isOpen ? (
@@ -25,24 +31,18 @@ const CountryDropDown = () => {
         )}
       </Menu.Button>
       <Menu.Items className="dropdown-menu">
-        <Menu.Item
-          as="li"
-          className="cursor-pointer hover:text-violet-700 transition"
-        >
-          Egypt
-        </Menu.Item>
-        <Menu.Item
-          as="li"
-          className="cursor-pointer hover:text-violet-700 transition"
-        >
-          UAE
-        </Menu.Item>
-        <Menu.Item
-          as="li"
-          className="cursor-pointer hover:text-violet-700 transition"
-        >
-          Saudi Arabia
-        </Menu.Item>
+        {countries.map((country, index) => {
+          return (
+            <Menu.Item
+              onClick={() => setCountry(country)}
+              as="li"
+              key={index}
+              className="cursor-pointer hover:text-violet-700 transition"
+            >
+              {country}
+            </Menu.Item>
+          );
+        })}
       </Menu.Items>
     </Menu>
   );
