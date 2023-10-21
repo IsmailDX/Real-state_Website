@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Head from "next/head";
+import Banner from "../components/Banner";
 
 export default function Home() {
   return (
@@ -7,7 +8,9 @@ export default function Home() {
       <Head>
         <title>Home</title>
       </Head>
-      <h1>Home</h1>
+      <div className=" min-h-[1800px]">
+        <Banner />
+      </div>
     </main>
   );
 }
