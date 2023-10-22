@@ -12,7 +12,9 @@ const CountryDropDown = () => {
   if (!houseContext) {
     return <div>Loading...</div>;
   }
+
   const { country, setCountry, countries } = houseContext;
+
   return (
     <Menu as="div" className="dropdown relative">
       <Menu.Button
