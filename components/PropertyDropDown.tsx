@@ -46,7 +46,7 @@ const PropertyDropDown = () => {
               onClick={() => setProperty(property)}
               as="li"
               key={index}
-              className="cursor-pointer hover:text-violet-700 transition"
+              className="cursor-pointer hover:text-violet-700 transition whitespace-nowrap"
             >
               {property}
             </Menu.Item>

@@ -39,7 +39,7 @@ const CountryDropDown = () => {
               onClick={() => setCountry(country)}
               as="li"
               key={index}
-              className="cursor-pointer hover:text-violet-700 transition"
+              className="cursor-pointer hover:text-violet-700 transition whitespace-nowrap"
             >
               {country}
             </Menu.Item>
