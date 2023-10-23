@@ -9,7 +9,7 @@ export default function Home() {
       <Head>
         <title>Home</title>
       </Head>
-      <div className=" min-h-[1800px]">
+      <div className="min-h-[1800px]">
         <Banner />
         <HouseList />
       </div>

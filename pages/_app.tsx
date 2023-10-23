@@ -7,7 +7,7 @@ import HouseContextProvider from "@/components/HouseContext";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <HouseContextProvider>
-      <div className="max-w-[1440px] mx-auto bg-white">
+      <div className="max-w-[1440px] mx-auto bg-white relative">
         <Header />
         <Component {...pageProps} />
         <Footer />

@@ -41,7 +41,7 @@ import Apartment5Lg from "@/public/apartments/a5lg.png";
 import Apartment6Lg from "@/public/apartments/a6lg.png";
 
 // import agents images
-import Agent1 from "@/public/agents/agent1.png";
+import Agent1 from "@/public/agents/Ismaildx.png";
 import Agent2 from "@/public/agents/agent2.png";
 import Agent3 from "@/public/agents/agent3.png";
 import Agent4 from "@/public/agents/agent4.png";
@@ -72,7 +72,7 @@ export const housesData = [
     price: "110000",
     agent: {
       image: Agent1,
-      name: "Patricia Tullert",
+      name: "Ismail Hussein",
       phone: "0123 456 78910",
     },
   },
